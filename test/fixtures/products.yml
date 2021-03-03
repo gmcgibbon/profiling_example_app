@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+chunky_bacon:
+  name: Chunky Bacon
+  price: 10.00
+
+apple:
+  name: Apple
+  price: 5.00
+
+orange:
+  name: Orange
+  price: 6.00
