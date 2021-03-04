@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: redirect("/products")
   resources :products, only: %i(index show)
   resources :orders, only: %i(new create show)
+  resource :cart, only: %i(update show)
 end

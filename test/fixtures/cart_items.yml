@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+_fixture:
+  model_class: Cart::Item
+
+chunky_bacon:
+  cart: tester
+  product: chunky_bacon
+  amount: 10
