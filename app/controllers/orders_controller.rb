@@ -27,7 +27,9 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.require(:order).permit(:token, :first_name, :last_name, :address)
+    params.require(:order).permit(:token, :first_name, :last_name, :address).tap do |params|
+      params[:cart_id] = session[:cart_id]
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.

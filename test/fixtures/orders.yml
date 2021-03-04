@@ -5,3 +5,4 @@ tester:
   first_name: Tester
   last_name: Testington
   address: 123 Fake St.
+  cart: tester

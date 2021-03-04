@@ -5,6 +5,12 @@ class OrderTest < ActiveSupport::TestCase
     @order = orders(:tester)
   end
 
+  test "cart presence" do
+    @order.update(cart: nil)
+
+    assert_equal({ cart: ["must exist"] }, @order.errors.to_hash)
+  end
+
   test "token presence" do
     @order.update(token: "")
 

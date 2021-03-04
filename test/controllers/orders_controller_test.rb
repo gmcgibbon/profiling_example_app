@@ -11,6 +11,14 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create order" do
+    put cart_url, params: {
+      cart: {
+        items_attributes: [{
+          product_id: products(:chunky_bacon).id,
+          amount: 1,
+        }]
+      }
+    }
     assert_difference('Order.count') do
       post orders_url, params: {
         order: {
