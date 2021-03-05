@@ -20,3 +20,5 @@ module ProfileThis
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+require "patches"
