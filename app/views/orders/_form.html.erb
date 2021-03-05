@@ -46,7 +46,7 @@
   </div>
 
   <div>
-    <p><%= money(@cart.price) %></p>
+    <p><%= money(@cart.price + ShippingService.amount) %> (<%= money(ShippingService.amount) %> shipping fee)</p>
     <p><%= @cart.items.count %> items</p>
   </div>
 

@@ -1,5 +1,5 @@
 module ApplicationHelper
   def money(price)
-    "$#{price}"
+    "$%.2f" % price
   end
 end

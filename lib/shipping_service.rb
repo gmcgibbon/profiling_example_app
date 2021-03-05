@@ -1,0 +1,28 @@
+module ShippingService
+  HOST = "localhost"
+  PORT = 9292
+
+  class << self
+    def amount
+      @amount ||= BigDecimal(rates_path.read.match(/local: \$(.*)/)[1])
+    end
+
+    def download_rates
+      rates_path.write(client.get("/").body)
+    rescue Net::ReadTimeout, Errno::ECONNREFUSED
+      false
+    end
+
+    private
+
+    def client
+      @client ||= Net::HTTP.new(HOST, PORT).tap do |client|
+        client.read_timeout = 5 # seconds
+      end
+    end
+
+    def rates_path
+      Rails.root.join("tmp/shipping_rates.txt")
+    end
+  end
+end
