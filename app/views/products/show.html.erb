@@ -1,11 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "menu" %>
 
-<p>
-  <strong>Name:</strong> <%= @product.name %>
-</p>
+<div>
+  <p>
+    <strong>Name:</strong> <%= @product.name %>
+  </p>
+  <p>
+    <strong>Price:</strong> <%= money(@product.price) %>
+  </p>
+</div>
 
-<p>
-  <strong>Price:</strong> <%= @product.name %>
-</p>
+<%= form_with(model: Cart.new.tap { |cart| cart.items.build }, method: :put, url: cart_url) do |form| %>
+  <%= form.fields_for(:items) do |items_form| %>
+    <%= items_form.hidden_field(:product_id, value: @product.id) %>
+    <%= items_form.number_field(:amount, value: 1) %>
+  <% end %>
 
-<%= link_to 'Back', products_path %>
+  <%= form.submit "Add to cart" %>
+<% end %>

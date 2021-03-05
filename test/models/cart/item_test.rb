@@ -28,4 +28,11 @@ class Cart::ItemTest < ActiveSupport::TestCase
 
     assert_equal({ amount: ["must be greater than 0"] }, @cart_item.errors.to_hash)
   end
+
+  test "#price" do
+    stylish_beret = Product.create!(name: "Stylish Beret", price: 134.67)
+    cart_item = carts(:tester).items.create!(product: stylish_beret, amount: 16)
+
+    assert_equal BigDecimal(2154.72, 6), cart_item.price
+  end
 end

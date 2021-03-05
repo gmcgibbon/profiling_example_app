@@ -1,11 +1,7 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "menu" %>
 
 <h1>Products</h1>
 
 <% @products.each do |product| %>
-  <div>
-    <p><%= product.name %></p>
-    <p><%= product.price %></p>
-    <p><%= link_to 'Show', product %></p>
-  </div>
+  <%= render product %>
 <% end %>

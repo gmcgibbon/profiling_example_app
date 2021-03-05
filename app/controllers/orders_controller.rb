@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i(show)
+  before_action :set_cart, only: %i(new)
 
   # GET /orders/new
   def new
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
       if @order.save
         format.html { redirect_to @order, notice: "Your order has been placed." }
       else
+        set_cart
         format.html { render :new, status: :unprocessable_entity }
       end
     end

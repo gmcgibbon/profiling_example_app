@@ -7,3 +7,8 @@ chunky_bacon:
   cart: tester
   product: chunky_bacon
   amount: 10
+
+apple:
+  cart: tester
+  product: apple
+  amount: 12

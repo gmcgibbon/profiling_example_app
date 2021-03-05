@@ -1,0 +1,9 @@
+<div>
+  <p><%= link_to item.product.name, item.product %></p>
+  <p><%= money(item.price) %></p>
+  <%= form.hidden_field(:id) %>
+  <%= form.number_field(:amount) %>
+  <%= form.label("Remove") %>
+  <%= form.check_box(:_destroy) %>
+  <%= form.submit "Update" %>
+</div>

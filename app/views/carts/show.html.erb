@@ -1,9 +1,18 @@
+<%= render partial: "menu" %>
+
 <h1>Cart</h1>
 
-<% @cart.items.each do |item| %>
-  <div>
-    <p><%= item.product.name %></p>
-    <p><%= item.product.price %></p>
-    <p><%= link_to 'Show', item.product %></p>
-  </div>
+<%= form_with(model: @cart) do |form| %>
+  <%= form.fields_for(:items) do |items_form| %>
+    <%= render items_form.object, form: items_form %>
+  <% end %>
 <% end %>
+
+<div>
+  <p><%= money(@cart.price) %></p>
+  <p><%= @cart.items.count %> items</p>
+</div>
+
+<br>
+
+<%= link_to "Checkout", new_order_path %>

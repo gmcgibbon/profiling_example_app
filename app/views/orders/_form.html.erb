@@ -26,6 +26,30 @@
     <%= form.text_field :address %>
   </div>
 
+  <div class="field">
+    <%= form.hidden_field :token, value: SecureRandom.uuid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_card_number %>
+    <%= form.text_field :credit_card_number, value: "4111111111111111", disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cvn %>
+    <%= form.text_field :cvn, value: "123", disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiry %>
+    <%= form.text_field :expiry, value: "01/22", disabled: true %>
+  </div>
+
+  <div>
+    <p><%= money(@cart.price) %></p>
+    <p><%= @cart.items.count %> items</p>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
