@@ -6,19 +6,21 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    fill_cart
+
     get new_order_url
     assert_response :success
   end
 
+  test "should redirect new when cart is empty" do
+    get new_order_url
+    assert_response :redirect
+    assert_redirected_to cart_url
+  end
+
   test "should create order" do
-    put cart_url, params: {
-      cart: {
-        items_attributes: [{
-          product_id: products(:chunky_bacon).id,
-          amount: 1,
-        }]
-      }
-    }
+    fill_cart
+
     assert_difference('Order.count') do
       post orders_url, params: {
         order: {
@@ -36,5 +38,18 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   test "should show order" do
     get order_url(@order)
     assert_response :success
+  end
+
+  private
+
+  def fill_cart
+    put cart_url, params: {
+      cart: {
+        items_attributes: [{
+          product_id: products(:chunky_bacon).id,
+          amount: 1,
+        }]
+      }
+    }
   end
 end

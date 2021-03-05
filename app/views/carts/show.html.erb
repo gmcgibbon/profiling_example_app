@@ -15,4 +15,6 @@
 
 <br>
 
-<%= link_to "Checkout", new_order_path %>
+<% if @cart.items.any? %>
+  <%= link_to "Checkout", new_order_path %>
+<% end %>
