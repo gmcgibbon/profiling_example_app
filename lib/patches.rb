@@ -1,22 +1,24 @@
-ActionController::Base.class_eval do
-  def super_cool_method_😎
+Rails.application.reloader.to_prepare do
+  ActionController::Base.class_eval do
+    def super_cool_method_😎
+    end
   end
-end
 
-ActiveStorage::Service.class_eval do
-  def see_no_evil_🙈
+  ActiveStorage::Service.class_eval do
+    def see_no_evil_🙈
+    end
   end
-end
 
-ActiveRecord::Base.class_eval do
-  def no_problem_right_😱
+  ActiveRecord::Base.class_eval do
+    def no_problem_right_😱
+    end
   end
-end
 
 
-ActiveJob::Base.class_eval do
-  def i_like_emojis_✨
+  ActiveJob::Base.class_eval do
+    def i_like_emojis_✨
+    end
   end
-end
 
-sleep(1)
+  Tree
+end
