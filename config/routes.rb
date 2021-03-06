@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :products, only: %i(index show)
   resources :orders, only: %i(new create show)
   resource :cart, only: %i(update show)
+
+  1000.times.map do |number|
+    resources :"#{number}_routes"
+  end
 end
