@@ -5,7 +5,7 @@ run ->(env) do
     {"Content-Type" => "text/plain"},
     [
       <<~BODY
-        #{10_000.times.map { "other: ignore" }.join("\n")}
+        #{100_000.times.map { "other: ignore" }.join("\n")}
         local: $10.00
       BODY
     ]
