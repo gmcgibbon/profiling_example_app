@@ -10,6 +10,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "speedscope": "^1.13.0",
     "webpack-dev-server": "^3.11.2"
   }
 }

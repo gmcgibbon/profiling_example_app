@@ -6,6 +6,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if ENV["BOOT_PROFILE"]
+  StackProf.start(mode: ENV["BOOT_PROFILE"].to_sym, raw: true)
+end
+
 module ProfileThis
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
