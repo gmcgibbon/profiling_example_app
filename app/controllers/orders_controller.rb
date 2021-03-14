@@ -49,9 +49,6 @@ class OrdersController < ApplicationController
   end
 
   def confirm_order
-    if @order.persisted?
-      PaymentService.charge(@order.token)
-      OrderMailer.confirmation(@order).deliver_now
-    end
+    OrderConfirmationJob.perform_later(@order) if @order.persisted?
   end
 end
