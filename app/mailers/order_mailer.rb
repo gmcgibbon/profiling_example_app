@@ -1,6 +1,8 @@
 class OrderMailer < ApplicationMailer
   def confirmation(order)
     @order = order
-    sleep(5) # simulate slow mail server send
+    10_000_000.times.map do
+      rand
+    end # eg. slow mail server send
   end
 end

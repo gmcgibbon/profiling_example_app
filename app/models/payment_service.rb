@@ -1,6 +1,10 @@
 module PaymentService
-  def self.charge(_token)
-    sleep(5) # simulate a slow payment capture
-    true
+  class << self
+    def charge(_token)
+      10_000_000.times.map do
+        rand
+      end # eg. some kind of expensive calculation
+      true
+    end
   end
 end

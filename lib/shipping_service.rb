@@ -8,7 +8,7 @@ module ShippingService
     end
 
     def download_rates
-      rates_path.write(client.get("/").body)
+      rates_path.write(client.get("/shipping_rates.txt").body)
     rescue Net::ReadTimeout, Errno::ECONNREFUSED
       false
     end
@@ -17,7 +17,7 @@ module ShippingService
 
     def client
       @client ||= Net::HTTP.new(HOST, PORT).tap do |client|
-        client.read_timeout = 5 # seconds
+        client.read_timeout = 2 # seconds
       end
     end
 
