@@ -2,6 +2,4 @@
 
 <h1>Products</h1>
 
-<% @products.each do |product| %>
-  <%= render product %>
-<% end %>
+<% render partial: "products/product", collection: @products, cached: true %>>
