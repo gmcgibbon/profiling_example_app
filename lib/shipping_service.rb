@@ -8,7 +8,10 @@ module ShippingService
     end
 
     def download_rates
-      rates_path.write(client.get("/shipping_rates.txt").body)
+      rates_path.write('')
+      rates_path.open('a') do |file|
+        client.get("/shipping_rates.txt") { |rate| file << rate }
+      end
     rescue Net::ReadTimeout, Errno::ECONNREFUSED
       false
     end
