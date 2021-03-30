@@ -1,7 +1,7 @@
 require "test_helper"
 
 class CartsControllerTest < ActionDispatch::IntegrationTest
-  test "should update cart" do
+  test "update should add item to cart" do
     assert_difference('Cart.count') do
       assert_difference('Cart::Item.count') do
         put cart_url, params: {
@@ -16,6 +16,17 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to cart_url
+  end
+
+  test "update should edit item in cart" do
+    put cart_url, params: {
+      cart: {
+        items_attributes: [{
+          product_id: products(:chunky_bacon).id,
+          amount: 26,
+        }],
+      },
+    }
 
     assert_no_difference('Cart.count') do
       assert_no_difference('Cart::Item.count') do
@@ -34,6 +45,17 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to cart_url
+  end
+
+  test "update should remove item from cart" do
+    put cart_url, params: {
+      cart: {
+        items_attributes: [{
+          product_id: products(:chunky_bacon).id,
+          amount: 26,
+        }],
+      },
+    }
 
     assert_no_difference('Cart.count') do
       assert_difference('Cart::Item.count', -1) do
@@ -49,7 +71,9 @@ class CartsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to cart_url
+  end
 
+  test "update should redirect back" do
     put cart_url, headers: {
       "HTTP_REFERER": products_url
     }, params: {
